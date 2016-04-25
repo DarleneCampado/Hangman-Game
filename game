@@ -1,0 +1,89 @@
+from math import pi
+
+def product(integers):
+    prod = 1    
+    for i in integers:
+        prod = prod*i
+    return prod
+
+def rectangle(r_area):
+    r_dimension = []
+    print "Rectangle"
+    length = raw_input("length: ")
+    r_dimension.append(int(length))
+    wid = raw_input("width: ")
+    r_dimension.append(int(wid))
+    r_area = product(r_dimension)
+    return r_area
+
+def square(s_area):
+    s_dimension = []
+    print "\nSquare"
+    side = raw_input("side: ")
+    s_dimension.append(int(side))
+    s_dimension.append(int(side))   
+    s_area = product(s_dimension)
+    return s_area
+    
+def triangle(t_area):
+    t_dimension = []
+    print "\nTriangle"
+    base = raw_input("base: ")
+    t_dimension.append(int(base))
+    height = raw_input("height: ")
+    t_dimension.append(int(height))
+    t_dimension.append(0.5)
+    t_area = product(t_dimension)
+    return t_area
+    
+def circle(c_area):
+    c_dimension = []
+    print "\nCircle"
+    radius = raw_input("radius: ")
+    c_dimension.append(int(radius))
+    c_dimension.append(int(radius))
+    c_dimension.append(pi)
+    c_area = product(c_dimension)
+    return c_area
+    
+def game():
+    areas = []
+    print "HANGMAN GAME: Guess the highest area!"
+    print "\nPlease input following dimensions of the shapes:"
+    rr_area = rectangle(r_area)
+    areas.append(rr_area)
+    ss_area = square(s_area)
+    areas.append(ss_area)
+    tt_area = triangle(t_area)
+    areas.append(tt_area)
+    cc_area = circle(c_area)
+    areas.append(cc_area)
+    sareas = sorted(areas)
+    ans = sareas[len(sareas)-1]
+    print "\nGuess which shape has the highest area (3 Tries only): \n[r] Rectangle\n[s] Square\n[t] Triangle\n[c] Circle"
+    for turn in range(3):
+        s = raw_input("selection: ")
+        if s == 'r':
+            sel = rr_area
+        elif s == 's':
+            sel = ss_area
+        elif s == 't':
+            sel = tt_area
+        elif s == 'c':
+            sel = cc_area
+        else:
+            print "Wrong input. Try again"
+        if sel == ans:
+            print "You won!"
+            break
+        else: 
+            print "Wrong answer. Try again \n"
+        print "Turn",turn+1
+        if turn == 2:
+            print "Game over"
+
+r_area = 0
+s_area = 0
+t_area = 0
+c_area = 0
+game()
